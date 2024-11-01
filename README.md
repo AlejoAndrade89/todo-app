@@ -34,7 +34,7 @@ This app combines frontend-backend communication through RESTful APIs for seamle
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/fernandovmp/todo-list.git
+   https://github.com/AlejoAndrade89/todo-app.git
 2. Navigate to the project:
   cd todo-list
 3. Launch with Docker:
