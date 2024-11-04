@@ -1,46 +1,41 @@
 import React, { useState } from 'react';
-import { addTodo } from '../api/todos';
 
-interface TodoFormProps {
-    onAdd: () => void;
-}
+type TodoFormProps = {
+  onSubmit: (title: string, description: string) => void;
+};
 
-const TodoForm: React.FC<TodoFormProps> = ({ onAdd }) => {
-    const [title, setTitle] = useState('');
-    const [description, setDescription] = useState('');
+const TodoForm: React.FC<TodoFormProps> = ({ onSubmit }) => {
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
 
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-        await addTodo({
-            title,
-            description,
-            isComplete: false,
-            id: 0
-        });
-        setTitle('');
-        setDescription('');
-        onAdd();
-    };
+  const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => setTitle(e.target.value);
+  const handleDescriptionChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => setDescription(e.target.value);
 
-    return (
-        <form onSubmit={handleSubmit} className="p-4 bg-white rounded-lg shadow mb-4">
-            <input
-                type="text"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                placeholder="Title"
-                className="p-2 border border-gray-300 rounded w-full mb-2"
-                required
-            />
-            <textarea
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-                placeholder="Description"
-                className="p-2 border border-gray-300 rounded w-full mb-2"
-            />
-            <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">Add Todo</button>
-        </form>
-    );
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    onSubmit(title, description);
+    setTitle('');
+    setDescription('');
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <input
+        type="text"
+        value={title}
+        onChange={handleTitleChange}
+        placeholder="Title"
+        required
+      />
+      <textarea
+        value={description}
+        onChange={handleDescriptionChange}
+        placeholder="Description"
+        required
+      />
+      <button type="submit">Add Todo</button>
+    </form>
+  );
 };
 
 export default TodoForm;
