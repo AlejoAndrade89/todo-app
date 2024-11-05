@@ -5,7 +5,7 @@ import { Todo } from '../types/Todo';
 const useTodoItem = (todo: Todo, onUpdate: (updatedTodo: Todo) => void, onDelete: (id: number) => void) => {
   const handleCompleteToggle = useCallback(async () => {
     try {
-      const result = await updateTodo(todo.id, { isComplete: !todo.isComplete });
+      const result = await updateTodo(todo.id, { isCompleted: !todo.isCompleted });
       onUpdate(result.data);
     } catch (error) {
       console.error("Error updating todo:", error);
