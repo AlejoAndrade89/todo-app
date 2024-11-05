@@ -16,7 +16,7 @@ const TodoItem: React.FC<TodoItemProps> = ({ todo, onUpdate, onDelete }) => {
       <h3>{todo.title}</h3>
       <p>{todo.description}</p>
       <button onClick={handleCompleteToggle}>
-        {todo.isComplete ? 'Mark as Incomplete' : 'Mark as Complete'}
+        {todo.isCompleted ? 'Mark as Incomplete' : 'Mark as Complete'}
       </button>
       <button onClick={handleDelete}>Delete</button>
     </div>

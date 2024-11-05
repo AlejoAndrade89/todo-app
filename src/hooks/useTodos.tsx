@@ -1,11 +1,10 @@
 import { useState, useEffect } from 'react';
 import { Todo } from '../types/Todo';
-import { getTodo, addTodo, deleteTodo } from '../services/todoService';
+import { getTodo, addTodo, deleteTodo, updateTodo } from '../services/todoService';
 
 const useTodos = () => {
     const [todos, setTodos] = useState<Todo[]>([]);
     const [isLoading, setIsLoading] = useState(false);
-
 
     useEffect(() => {
         const fetchTodos = async () => {
@@ -22,7 +21,7 @@ const useTodos = () => {
     }, []);
 
     const handleAddTodo = async (title: string, description: string) => {
-        const newTodo = { title, description, isComplete: false };
+        const newTodo = { title, description, isCompleted: false };
         try {
             const response = await addTodo(newTodo);
             setTodos([...todos, response.data]);
@@ -31,8 +30,16 @@ const useTodos = () => {
         }
     };
 
-    const handleUpdateTodo = (id: number, title: string, description: string, isComplete: boolean) => {
-        setTodos(todos.map(todo => (todo.id === id ? { ...todo, title, description, isComplete } : todo)));
+    // Updated handleUpdateTodo to make a request to update the backend as well
+    const handleUpdateTodo = async (id: number, title: string, description: string, isCompleted: boolean) => {
+        try {
+            // Call the backend to persist the update
+            const response = await updateTodo(id, { title, description, isCompleted });
+            // Update the local state only if the backend update is successful
+            setTodos(todos.map(todo => (todo.id === id ? response.data : todo)));
+        } catch (error) {
+            console.error("Error updating todo:", error);
+        }
     };
 
     const handleDeleteTodo = async (id: number) => {

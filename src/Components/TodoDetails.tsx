@@ -5,7 +5,8 @@ import useTodoDetails from '../hooks/useTodoDetails';
 
 type TodoDetailsProps = {
   todos: Todo[];
-  onUpdate: (updatedTodo: Todo) => void;
+  onUpdate: (id: number, title: string, description: string, isCompleted: boolean) => void;
+
 };
 
 const TodoDetails: React.FC<TodoDetailsProps> = ({ todos, onUpdate }) => {
@@ -27,7 +28,7 @@ const TodoDetails: React.FC<TodoDetailsProps> = ({ todos, onUpdate }) => {
   }
 
   const handleSave = () => {
-    onUpdate({ ...todo, title, description });
+    onUpdate(todo.id, title, description, todo.isCompleted);
     setIsEditing(false);
   };
 
@@ -54,8 +55,8 @@ const TodoDetails: React.FC<TodoDetailsProps> = ({ todos, onUpdate }) => {
         <>
           <h2 className="text-3xl font-semibold text-gray-800 mb-4">{todo.title}</h2>
           <p className="text-lg text-gray-600 mb-2">{todo.description}</p>
-          <p className={`text-xl font-semibold mb-4 ${todo.isComplete ? 'text-green-500' : 'text-yellow-500'}`}>
-            {todo.isComplete ? 'Completed' : 'Pending'}
+          <p className={`text-xl font-semibold mb-4 ${todo.isCompleted ? 'text-green-500' : 'text-yellow-500'}`}>
+            {todo.isCompleted ? 'Completed' : 'Pending'}
           </p>
           <button onClick={() => setIsEditing(true)} className="mt-4 bg-yellow-500 text-white py-2 px-6 rounded-lg hover:bg-yellow-600">
             Edit

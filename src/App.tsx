@@ -1,18 +1,18 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Link } from 'react-router-dom';
 import TodoList from './components/TodoList';
 import TodoDetails from './components/TodoDetails';
+import TodoListView from './components/TodoListView'; // Nuevo componente para ver la lista completa de tareas
 import useTodos from './hooks/useTodos';
 
 const App: React.FC = () => {
-  // Using custom hook to manage todos and loading state
   const { todos, isLoading, handleAddTodo, handleUpdateTodo, handleDeleteTodo } = useTodos();
 
   return (
     <div className="container mx-auto px-4 py-8 max-w-md bg-white shadow-xl rounded-lg">
-      {/* Define routes for main list and details view */}
+      <h1 className="text-3xl font-semibold text-center mb-6 text-gray-800">My Todo List</h1>
+      <Link to="/todos" className="text-blue-500 underline mb-4 block text-center">Ver Lista de Tareas</Link> {/* Nuevo botón */}
       <Routes>
-        {/* Main list view route */}
         <Route 
           path="/" 
           element={
@@ -25,13 +25,13 @@ const App: React.FC = () => {
             />
           } 
         />
-        {/* Details view route */}
+        <Route path="/todos" element={<TodoListView todos={todos} />} /> {/* Nueva vista para la lista de tareas */}
         <Route 
           path="/todos/:id" 
           element={
             <TodoDetails 
               todos={todos} 
-              onUpdate={handleUpdateTodo}  // Pass handleUpdateTodo as onUpdate to TodoDetails
+              onUpdate={handleUpdateTodo}
             />
           } 
         />

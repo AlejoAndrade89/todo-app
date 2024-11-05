@@ -4,7 +4,7 @@ import { Todo } from '../types/Todo';
 const useTodoList = (
     todos: Todo[],
     onAddTodo: (title: string, description: string) => void,
-    onUpdateTodo: (id: number, title: string, description: string, isComplete: boolean) => void, // Actualizado para aceptar 4 argumentos
+    onUpdateTodo: (id: number, title: string, description: string, isCompleted: boolean) => void, // Actualizado para aceptar 4 argumentos
     onDeleteTodo: (id: number) => void,
     isLoading: boolean
 ) => {
@@ -22,8 +22,8 @@ const useTodoList = (
     };
 
     // Modificación de `handleCompleteToggle` para aceptar y pasar todos los argumentos
-    const handleCompleteToggle = (id: number, title: string, description: string, isComplete: boolean) => {
-        onUpdateTodo(id, title, description, isComplete);
+    const handleCompleteToggle = (id: number, title: string, description: string, isCompleted: boolean) => {
+        onUpdateTodo(id, title, description, isCompleted);
     };
 
     return {

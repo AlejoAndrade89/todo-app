@@ -6,7 +6,7 @@ import useTodoList from '../hooks/useTodoList';
 type TodoListProps = {
   todos: Todo[];
   onAddTodo: (title: string, description: string) => void;
-  onUpdateTodo: (id: number, title: string, description: string, isComplete: boolean) => void;
+  onUpdateTodo: (id: number, title: string, description: string, isCompleted: boolean) => void;
   onDeleteTodo: (id: number) => void;
   isLoading: boolean;
 };
@@ -55,10 +55,10 @@ const TodoList: React.FC<TodoListProps> = ({ todos, onAddTodo, onUpdateTodo, onD
             <div className="flex justify-between mt-4">
               <Link to={`/todos/${todo.id}`} className="text-blue-500 hover:text-blue-700">View Details</Link>
               <button 
-                onClick={() => handleCompleteToggle(todo.id, todo.title, todo.description, !todo.isComplete)} 
-                className={`px-4 py-2 rounded-lg ${todo.isComplete ? 'bg-green-500 text-white' : 'bg-yellow-400 text-white'} hover:opacity-90`}
+                onClick={() => handleCompleteToggle(todo.id, todo.title, todo.description, !todo.isCompleted)} 
+                className={`px-4 py-2 rounded-lg ${todo.isCompleted ? 'bg-green-500 text-white' : 'bg-yellow-400 text-white'} hover:opacity-90`}
               >
-                {todo.isComplete ? 'Mark as Incomplete' : 'Mark as Complete'}
+                {todo.isCompleted ? 'Mark as Incomplete' : 'Mark as Complete'}
               </button>
               <button onClick={() => onDeleteTodo(todo.id)} className="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600">
                 Delete
