@@ -10,8 +10,6 @@ const App: React.FC = () => {
 
   return (
     <div className="container mx-auto px-4 py-8 max-w-md bg-white shadow-xl rounded-lg">
-      <h1 className="text-3xl font-semibold text-center mb-6 text-gray-800">My Todo List</h1>
-      <Link to="/todos" className="text-blue-500 underline mb-4 block text-center">Ver Lista de Tareas</Link> {/* Nuevo botón */}
       <Routes>
         <Route 
           path="/" 
@@ -36,6 +34,7 @@ const App: React.FC = () => {
           } 
         />
       </Routes>
+      <Link to="/todos" className="text-blue-500 underline mb-4 block text-center">Ver Lista de Tareas</Link> {/* Nuevo botón */}
     </div>
   );
 };

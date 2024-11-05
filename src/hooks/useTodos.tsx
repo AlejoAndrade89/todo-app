@@ -38,7 +38,7 @@ const useTodos = () => {
             // Update the local state only if the backend update is successful
             setTodos((prevTodos) =>
                 prevTodos.map((todo) =>
-                    todo.id === id? {...todo, isCompleted} : todo
+                    todo.id === id? {...todo, title, description, isCompleted} : todo
         ));
 
         } catch (error) {
