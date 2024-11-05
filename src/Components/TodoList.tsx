@@ -48,19 +48,21 @@ const TodoList: React.FC<TodoListProps> = ({ todos, onAddTodo, onUpdateTodo, onD
 
       <ul className="space-y-4">
         {todos.map(todo => (
-          <li key={todo.id} className="bg-gray-100 p-4 rounded-lg shadow-md hover:shadow-lg transition duration-200">
-            <h3 className="text-xl font-semibold text-gray-800">{todo.title}</h3>
-            <p className="text-gray-600">{todo.description}</p>
-            <div className="flex justify-between mt-4">
+          <li key={todo.id} className="bg-gray-100 p-4 rounded-lg shadow-md hover:shadow-lg transition duration-200 overflow-hidden">
+            <h3 className="text-xl font-semibold text-gray-800 truncate">{todo.title}</h3>
+            <p className="text-gray-600 mb-2 overflow-hidden break-words max-h-16">{todo.description}</p>
+            <div className="flex justify-between space-x-2">
               <button 
                 onClick={() => handleCompleteToggle(todo.id, todo.title, todo.description, !todo.isCompleted)} 
-                className={`w-1/2 px-4 py-2 mr-2 rounded-lg text-white font-medium ${todo.isCompleted ? 'bg-green-500 hover:bg-green-600' : 'bg-yellow-400 hover:bg-yellow-500'}`}
+                className={`flex-1 px-4 py-2 rounded-lg font-medium text-white ${
+                  todo.isCompleted ? 'bg-green-500 hover:bg-green-600' : 'bg-yellow-400 hover:bg-yellow-500'
+                }`}
               >
                 {todo.isCompleted ? 'Mark as Incomplete' : 'Mark as Complete'}
               </button>
               <button 
                 onClick={() => onDeleteTodo(todo.id)} 
-                className="w-1/2 px-4 py-2 ml-2 bg-red-500 text-white rounded-lg hover:bg-red-600 font-medium"
+                className="flex-1 px-4 py-2 bg-red-500 text-white rounded-lg font-medium hover:bg-red-600 transition duration-200"
               >
                 Delete
               </button>
