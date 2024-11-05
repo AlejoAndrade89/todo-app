@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { Todo } from '../types/Todo';
 import useTodoList from '../hooks/useTodoList';
 
@@ -18,7 +17,7 @@ const TodoList: React.FC<TodoListProps> = ({ todos, onAddTodo, onUpdateTodo, onD
     handleTitleChange,
     handleDescriptionChange,
     handleSubmit,
-    handleCompleteToggle // Utilizamos la función de cambio de estado
+    handleCompleteToggle
   } = useTodoList(todos, onAddTodo, onUpdateTodo, onDeleteTodo, isLoading);
 
   return (
@@ -53,14 +52,16 @@ const TodoList: React.FC<TodoListProps> = ({ todos, onAddTodo, onUpdateTodo, onD
             <h3 className="text-xl font-semibold text-gray-800">{todo.title}</h3>
             <p className="text-gray-600">{todo.description}</p>
             <div className="flex justify-between mt-4">
-              <Link to={`/todos/${todo.id}`} className="text-blue-500 hover:text-blue-700">View Details</Link>
               <button 
                 onClick={() => handleCompleteToggle(todo.id, todo.title, todo.description, !todo.isCompleted)} 
-                className={`px-4 py-2 rounded-lg ${todo.isCompleted ? 'bg-green-500 text-white' : 'bg-yellow-400 text-white'} hover:opacity-90`}
+                className={`w-1/2 px-4 py-2 mr-2 rounded-lg text-white font-medium ${todo.isCompleted ? 'bg-green-500 hover:bg-green-600' : 'bg-yellow-400 hover:bg-yellow-500'}`}
               >
                 {todo.isCompleted ? 'Mark as Incomplete' : 'Mark as Complete'}
               </button>
-              <button onClick={() => onDeleteTodo(todo.id)} className="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600">
+              <button 
+                onClick={() => onDeleteTodo(todo.id)} 
+                className="w-1/2 px-4 py-2 ml-2 bg-red-500 text-white rounded-lg hover:bg-red-600 font-medium"
+              >
                 Delete
               </button>
             </div>
