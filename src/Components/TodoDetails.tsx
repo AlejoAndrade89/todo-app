@@ -87,7 +87,7 @@ const TodoDetails: React.FC<TodoDetailsProps> = ({ todos, onUpdate }) => {
           <div className="flex space-x-4">
             <button
               onClick={() => setIsEditing(true)}
-              className="w-full sm:w-auto bg-yellow-500 text-white py-2 px-6 rounded-lg shadow-md hover:bg-yellow-600 transition"
+              className="w-full sm:w-auto bg-yellow-500 text-white py-2 px-6 rounded-lg shadow-md hover:bg-yellow-600 transition ml-6"
             >
               Edit
             </button>

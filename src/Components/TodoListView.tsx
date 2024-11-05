@@ -12,7 +12,7 @@ const TodoListView: React.FC<TodoListViewProps> = ({ todos }) => {
   return (
     <div className="p-4 max-w-2xl mx-auto">
       <h2 className="text-2xl font-semibold text-center mb-6">
-        Lista de Tareas
+        Task list
       </h2>
       <ul className="space-y-4">
         {todos.map((todo) => (
@@ -31,19 +31,18 @@ const TodoListView: React.FC<TodoListViewProps> = ({ todos }) => {
                 to={`/todos/${todo.id}`}
                 className="text-blue-500 hover:text-blue-700 font-medium"
               >
-                Ver Detalles
+                See Details
               </Link>
             </div>
-
-            <button
-              onClick={() => navigate("/")}
-              className="bg-blue-500 text-white py-2 px-6 rounded-lg shadow-md hover:bg-blue-600 transition"
-            >
-              Back
-            </button>
           </li>
         ))}
       </ul>
+      <button
+              onClick={() => navigate("/")}
+              className="bg-blue-500 text-white py-2 px-6 rounded-lg shadow-md hover:bg-blue-600 transition mt-8"
+            >
+              Back
+            </button>
     </div>
   );
 };

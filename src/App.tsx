@@ -23,7 +23,7 @@ const App: React.FC = () => {
                 isLoading={isLoading}
               />
               {/* Enlace "Ver Lista de Tareas" solo se muestra en la página principal */}
-              <Link to="/todos" className="text-blue-500 underline mb-4 block text-center">Ver Lista de Tareas</Link>
+              <Link to="/todos" className="text-blue-500 underline mb-4 block text-center mt-8">View tasks</Link>
             </>
           } 
         />

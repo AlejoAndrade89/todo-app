@@ -22,7 +22,7 @@ const TodoList: React.FC<TodoListProps> = ({ todos, onAddTodo, onUpdateTodo, onD
 
   return (
     <div>
-      <h2 className="text-3xl font-semibold text-center mb-6 text-gray-800">My Todo List</h2>
+      <h2 className="text-3xl font-semibold text-center mb-6 text-gray-800">Todo App</h2>
       
       <form onSubmit={handleSubmit} className="mb-6">
         <input
