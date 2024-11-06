@@ -8,7 +8,7 @@ const api = axios.create({
 export const getTodo = () => api.get<Todo[]>('/');
 export const getTodoById = (id: number) => api.get<Todo>(`/${id}`);
 export const addTodo = (todo: Omit<Todo, 'id'>) => api.post<Todo>('/', todo);
-export const updateTodo = (id: number, todo: Partial<Todo>) => api.put<Todo>(`/${id}`, todo);
+export const updateTodo = (id: number, todo: Todo) => api.put<Todo>(`/${id}`, todo);  // Se asegura de enviar el objeto completo
 export const deleteTodo = (id: number) => api.delete<void>(`/${id}`);
 
 export default { getTodo, getTodoById, addTodo, updateTodo, deleteTodo };

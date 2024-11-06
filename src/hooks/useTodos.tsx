@@ -30,17 +30,16 @@ const useTodos = () => {
         }
     };
 
-    // Updated handleUpdateTodo to make a request to update the backend as well
     const handleUpdateTodo = async (id: number, title: string, description: string, isCompleted: boolean) => {
         try {
             // Call the backend to persist the update
-            await updateTodo(id, { title, description, isCompleted });
+            await updateTodo(id, { id, title, description, isCompleted }); // Se asegura de pasar todos los campos
             // Update the local state only if the backend update is successful
             setTodos((prevTodos) =>
                 prevTodos.map((todo) =>
-                    todo.id === id? {...todo, title, description, isCompleted} : todo
-        ));
-
+                    todo.id === id ? { ...todo, title, description, isCompleted } : todo
+                )
+            );
         } catch (error) {
             console.error("Error updating todo:", error);
         }
